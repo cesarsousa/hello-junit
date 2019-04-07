@@ -1,8 +1,10 @@
-package br.com.cesarprojs.bussines;
+package br.com.cesarprojs.conversorRomanos;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import br.com.cesarprojs.conversorRomanos.ConversorDeNumeroRomano;
 
 public class ConversorDeNumeroRomanoTest {
 

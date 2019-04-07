@@ -1,11 +1,11 @@
-package br.com.cesarprojs.bussines;
+package br.com.cesarprojs.loja;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cesarprojs.model.Item;
+import br.com.cesarprojs.loja.CarrinhoDeCompras;
 
 public class CarrinhoDeComprasTest {
 

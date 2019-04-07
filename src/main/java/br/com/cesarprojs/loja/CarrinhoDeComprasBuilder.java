@@ -1,7 +1,4 @@
-package br.com.cesarprojs.builder;
-
-import br.com.cesarprojs.bussines.CarrinhoDeCompras;
-import br.com.cesarprojs.model.Item;
+package br.com.cesarprojs.loja;
 
 public class CarrinhoDeComprasBuilder {
 	

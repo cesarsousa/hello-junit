@@ -1,4 +1,4 @@
-package br.com.cesarprojs.model;
+package br.com.cesarprojs.calculadoraSalario;
 
 public class Funcionario {
 

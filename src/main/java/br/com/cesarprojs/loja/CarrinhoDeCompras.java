@@ -1,10 +1,8 @@
-package br.com.cesarprojs.bussines;
+package br.com.cesarprojs.loja;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import br.com.cesarprojs.model.Item;
 
 public class CarrinhoDeCompras {
 
