@@ -1,23 +1,44 @@
 package br.com.cesarprojs.notaFiscal;
 
-import java.util.Calendar;
+import java.util.List;
 
 public class GeradorDeNotaFiscal {
 
-	private NFDao dao;
-	private final SAP sap;
+	private final List<AcaoAposGerarNota> acoes;
+	private final Relogio relogio;
+	private Tabela tabela;
 
-	public GeradorDeNotaFiscal(NFDao dao, SAP sap) {
-		this.dao = dao;
-		this.sap = sap;
+	public GeradorDeNotaFiscal(List<AcaoAposGerarNota> acoes) {
+		this(acoes, new RelogioDoSistema());
+	}
+	
+	public GeradorDeNotaFiscal(List<AcaoAposGerarNota> acoes, Relogio relogio) {
+		this.acoes = acoes;
+		this.relogio = relogio;
+	}
+	
+	public GeradorDeNotaFiscal(List<AcaoAposGerarNota> acoes, Tabela tabela) {
+		this.acoes = acoes;
+		this.tabela = tabela;
+		this.relogio = new RelogioDoSistema();
+	}
+	
+	public GeradorDeNotaFiscal(List<AcaoAposGerarNota> acoes, Relogio relogio, Tabela tabela) {
+		this.acoes = acoes;
+		this.relogio = relogio;
+		this.tabela = tabela;
 	}
 
 	public NotaFiscal gera(Pedido pedido) {
 
-		NotaFiscal nf = new NotaFiscal(pedido.getCliente(), pedido.getValorTotal() * 0.94, Calendar.getInstance());
+		NotaFiscal nf = new NotaFiscal(
+				pedido.getCliente(), 
+				pedido.getValorTotal() * tabela.paraValor(pedido.getValorTotal()), 
+				relogio.hoje());
 
-		dao.persiste(nf);
-		sap.envia(nf);
+		for (AcaoAposGerarNota acao : acoes) {
+			acao.executa(nf);
+		}
 
 		return nf;
 	}
